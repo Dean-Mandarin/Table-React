@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import "./App.css";
+
+//data
+import {HeaderTable, BodyTable} from "./dataTHead";
+
+//components
+import ViewTable from "./ViewTable";
+import Modal from "./AddRow/Modal";
+import Form from "./AddRow/Form";
 
 function App() {
+  const [rows, setRows] = useState(BodyTable);
+  const [modalActive, setModalActive] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ViewTable
+        fields={HeaderTable}
+        rows={rows}
+        setRows={setRows}
+        numerable
+        selectable
+      />
+      <button onClick={ () => setModalActive(true)}>+</button>
+      <Modal
+        active = {modalActive}
+        setActive = {setModalActive}
+        children = {<Form/>}
+      >
+
+      </Modal>
     </div>
   );
 }
