@@ -1,20 +1,37 @@
 .container{
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
 }
 
 table{
-    border: 2px solid dimgrey;
-    background: #9b0000;
+    border: 0 solid dimgrey;
+    border-radius: 5px;
+    background: darkgrey;
+    width: 85%;
 }
 
 
 th{
-    background: #d50000;
+    background: #61D7A4;
     color: whitesmoke;
-    padding: 5px;
+    border-radius: 5px;
+    padding: 5px 20px 5px 20px;
 }
 
 #selectAll{
     cursor: pointer;
+}
+
+td{
+    background: whitesmoke;
+    padding: 5px 20px 5px 20px;
+}
+
+.delete{
+    height: 32px;
+    width: 80px;
+    padding: 2px 5px 2px 5px;
 }

@@ -1,3 +1,4 @@
+
 export const HeaderTable = [
   {
     field: 'name',
@@ -10,26 +11,17 @@ export const HeaderTable = [
   {
     field: 'dateOfBirth',
     title: "Дата рождения"
+  },
+  {
+    field: 'number',
+    title: "Номер телефона"
+  },
+  {
+    field: "iin",
+    title: "ИИН"
   }
 ];
 
 export const BodyTable = [
-  {
-    id: 1,
-    name: "Тони",
-    surname: "Раут",
-    dateOfBirth: "09/09/1990"
-  },
-  {
-    id: 2,
-    name: "Дженсен",
-    surname: "Эклс",
-    dateOfBirth: "01/03/1978"
-  },
-  {
-    id: 3,
-    name: "Дария",
-    surname: "Ставрович",
-    dateOfBirth: "01/02/1986"
-  }
+
 ];
