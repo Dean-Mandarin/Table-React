@@ -28,10 +28,20 @@ th{
 td{
     background: whitesmoke;
     padding: 5px 20px 5px 20px;
+    cursor: default;
 }
 
 .delete{
     height: 32px;
     width: 80px;
     padding: 2px 5px 2px 5px;
+}
+
+button{
+    cursor: pointer;
+}
+
+.editable{
+    border: 3px solid #61D7A4;
+    cursor: url("pencil2.png"), text;
 }

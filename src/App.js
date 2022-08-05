@@ -58,12 +58,23 @@ const buttonsArray = [
   }
 ]
 
+const editDelete = [
+  {
+    type: "submit",
+    text: "Удалить"
+  },
+  {
+    type: "edit",
+    text: "Редактировать"
+  }
+]
+
 
 function App() {
   const [rows, setRows] = useState(BodyTable);
   const [modalActive, setModalActive] = useState(false);
 
-  console.log(rows)
+
   const setRowsAndCloseModal = (arr) => {
     localStorage.setItem("rows", JSON.stringify(arr))
     setModalActive(false);
@@ -85,6 +96,7 @@ function App() {
         setRows={setRows}
         numerable
         selectable
+        buttons={editDelete}
       />
 
       {/*кнопка "добавить"*/}

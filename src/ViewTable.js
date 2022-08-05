@@ -11,7 +11,7 @@ import Form from "./AddRow/Form";
 
 
 const ViewTable = (props) => {
-  const {fields, rows, setRows, numerable, selectable} = props;
+  const {fields, rows, setRows, numerable, selectable, buttons} = props;
 
   const checkRow = i => {
     const copyArr = [...rows];
@@ -30,12 +30,26 @@ const ViewTable = (props) => {
   //Modal
   const [modalActive, setModalActive] = useState(false);
 
+  //Edit
+  const [editable, setEditable] = useState(false);
+  console.log(editable)
+
   //Delete
   const remove = () => {
     const filtered = rows.filter(item => !item.checked);
     setRows(filtered);
     localStorage.setItem("rows", JSON.stringify(filtered));
     setModalActive(false);
+  }
+
+  //Редактировать
+  const edit = () => {
+    setEditable(true);
+  }
+
+  const stopEdit = () => {
+    setEditable(false);
+    selectAll();
   }
 
 
@@ -88,7 +102,14 @@ const ViewTable = (props) => {
 
               {
                 fields.map((head, ind) => (
-                  <td key={ind}>{item[head.field]}</td>
+                  <td
+                    key={ind}
+                    //редактировать
+                    contentEditable={(editable && item.checked)}
+                    className={(editable && item.checked) ? "editable" : null}
+                  >
+                    {item[head.field]}
+                  </td>
                 ))
               }
             </tr>
@@ -96,8 +117,40 @@ const ViewTable = (props) => {
         }
         </tbody>
       </table>
-      {/*далить*/}
-      <button className="delete" type="submit" onClick={() => setModalActive(true)}>Удалить</button>
+
+      {/*Кнопки "удалить" и "редактировать"*/}
+      <div className="menuButtons">
+        {
+          buttons.map((item, index) => {
+            if (item.type === "submit" && rows?.length !== 0) {
+              return (
+                <button
+                  key={index}
+                  type={item.type}
+                  className="delete"
+                  onClick={() => setModalActive(true)}
+                >
+                  {item.text}
+                </button>
+              )
+            } else if (item.type === "edit" && rows?.length !== 0) {
+              return (
+                <button
+                  key={index}
+                  type={item.type}
+                  className="edit"
+                  onClick={() =>
+                    (!editable && (rows.filter(item => item.checked).length !== 0))? edit() :
+                    editable ? stopEdit() :
+                      null}
+                >
+                  {!editable ? item.text : "Сохранить"}
+                </button>
+              )
+            }
+          })
+        }
+      </div>
 
 
       <AreYouSureForm
